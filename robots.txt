@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://chikenscrach.github.io/sitemap.xml

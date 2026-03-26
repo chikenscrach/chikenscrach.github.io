@@ -1,0 +1,30 @@
+name: Lint & Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: nicolomaioli/validate-html-action@v1
+        with:
+          files: '**/*.html'
+
+      - name: Lint CSS (Stylelint)
+        run: |
+          npm install -g stylelint stylelint-config-standard
+          echo '{ "extends": "stylelint-config-standard" }' > .stylelintrc.json
+          stylelint "**/*.css" || true
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose '**/*.html'
+          fail: false

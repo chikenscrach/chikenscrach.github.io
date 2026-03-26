@@ -1,76 +1,348 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* ============================================
+   Reset & Base
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif, 'Arial'; 
-    background-color: rgb(37, 171, 233), 255, 255);
-	cursor: url('cursor.cur'), auto;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: rgb(37, 171, 233);
+  cursor: url('image/cursor.cur'), auto;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* ============================================
+   Sakura Canvas
+   ============================================ */
+#sakura {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ============================================
+   Background
+   ============================================ */
 .background {
-    background-image: url('https://pbs.twimg.com/media/FdPN8a_WYAIbcpm.png'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-image: url('image/bg_by_Dino_illus.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
 
+@supports (-webkit-touch-callout: none) {
+  .background {
+    background-attachment: scroll;
+  }
+}
+
+/* ============================================
+   Content Card
+   ============================================ */
 .content {
-    text-align: center;
-    color: #e0c632; 
-    background-color: rgba(0, 0, 0, 0.6); 
-    padding: 20px;
-    border-radius: 10px;
+  text-align: center;
+  color: #f5e6a3;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 44px 32px 32px;
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.12s ease-out;
+  will-change: transform;
 }
 
-img {
-    width: 100px; 
-    border-radius: 50%; 
+/* ============================================
+   Avatar — Spinning Gradient Ring
+   ============================================ */
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 3px;
+  transition: transform 0.35s ease;
 }
 
+.avatar-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    #b3ff00, #00ff88, #00aaff,
+    #ff00ff, #ff4400, #ffaa00, #b3ff00
+  );
+  animation: ring-spin 4s linear infinite;
+  z-index: 0;
+}
+
+.avatar-wrapper:hover {
+  transform: scale(1.12);
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.avatar {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #111;
+}
+
+/* Rainbow mode (Easter-egg activated) */
+.avatar-wrapper.rainbow-mode::before {
+  animation: ring-spin 0.6s linear infinite;
+  background: conic-gradient(
+    red, orange, yellow, green, cyan, blue, violet, red
+  );
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1 {
+  margin: 18px 0 6px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+
+.subtitle {
+  font-size: 0.82rem;
+  opacity: 0.8;
+  margin-bottom: 14px;
+  min-height: 1.4em;
+}
+
+/* Typing cursor */
+.cursor-blink {
+  font-weight: 100;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   Interest Tags
+   ============================================ */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  cursor: default;
+  transition: background 0.3s, transform 0.25s;
+  user-select: none;
+}
+
+.tag:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   Links
+   ============================================ */
 a {
-    color: #00f; 
-    text-decoration: none;
-    margin: 0 10px;
+  color: #90caf9;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid #ffc107;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   Button
+   ============================================ */
+.button-group {
+  margin-top: 18px;
 }
 
 .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ffc107; 
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s, transform 0.2s;
-    cursor: pointer;
-    margin: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: #000;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.button-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .button:hover {
-    background-color: #ff9800; 
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 24px rgba(255, 152, 0, 0.45);
 }
 
 .button:active {
-    background-color: #ff6600; 
-    transform: scale(0.95);
+  transform: translateY(0) scale(0.97);
 }
 
-
-.avatar {
-    width: 100px; 
-    height: 100px;
-    border: 2px solid #b3ff00; 
-    border-radius: 50%; 
-    transition: border-color 0.3s, transform 0.2s;
+/* ============================================
+   Easter-egg Hint
+   ============================================ */
+.hint {
+  font-size: 0.7rem;
+  opacity: 0.3;
+  margin-top: 24px;
+  font-style: italic;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  user-select: none;
 }
 
-.avatar:hover {
-    border-color: #51b300; 
-    transform: scale(1.1); 
+.hint:hover {
+  opacity: 0.65;
+}
+
+/* ============================================
+   Toast Notification
+   ============================================ */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity  0.45s ease;
+  white-space: nowrap;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ============================================
+   Confetti
+   ============================================ */
+.confetti {
+  position: fixed;
+  top: -10px;
+  z-index: 9998;
+  pointer-events: none;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  0%   { opacity: 1; transform: translateY(0)     translateX(0)              rotate(0deg);   }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(105vh)  translateX(var(--drift,0)) rotate(720deg); }
+}
+
+/* ============================================
+   Stagger Entrance (added by JS)
+   ============================================ */
+.stagger-in {
+  opacity: 0;
+  animation: stagger-up 0.55s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes stagger-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 480px) {
+  .content {
+    padding: 30px 18px 24px;
+  }
+
+  h1 { font-size: 1.35rem; }
+  p  { font-size: 0.85rem;  }
+
+  .tag { font-size: 0.7rem; padding: 4px 10px; }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-wrapper::before,
+  .stagger-in,
+  .confetti,
+  .cursor-blink {
+    animation: none;
+  }
+
+  .stagger-in { opacity: 1; transform: none; }
+
+  #sakura { display: none; }
+
+  .avatar-wrapper,
+  .button,
+  .tag {
+    transition: none;
+  }
 }

@@ -1,30 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <link rel="icon" href="https://raw.githubusercontent.com/chikenscrach/chikenscrach.github.io/main/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hi, I'm csg — a passionate developer from Taiwan who loves anime, games, movies and series." />
+    <meta name="theme-color" content="#1a1a2e" />
+
+    <link rel="icon" href="image/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="icons/icon-192.png">
+
     <title>Rurudo My Beloved</title>
-    <meta property="og:title" content="Rurudo我婆">
-    <meta property="og:description" content="Rurudo可愛Rurudo務實">
-    <meta property="og:url" content="https://chikenscrach.github.io">
-    <meta property="og:image" content="https://raw.githubusercontent.com/chikenscrach/chikenscrach.github.io/main/image.png">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Rurudo My Beloved">
+
+    <meta property="og:title"     content="Rurudo我婆" />
+    <meta property="og:description" content="Rurudo可愛Rurudo務實" />
+    <meta property="og:url"       content="https://chikenscrach.github.io" />
+    <meta property="og:image"     content="image/image.png" />
+    <meta property="og:type"      content="website" />
+    <meta property="og:site_name" content="Rurudo My Beloved" />
   </head>
-  <body align="center">
-    <div class="background">
-      <div class="content">
-        <a href="https://lookup.guru/578079000086446090" target="_blank">
-            <img src="https://raw.githubusercontent.com/chikenscrach/chikenscrach.github.io/main/rurudo.png" alt="頭像" class="avatar">
+
+  <body>
+    <!-- 🌸 Sakura Canvas -->
+    <canvas id="sakura" aria-hidden="true"></canvas>
+
+    <main class="background">
+      <div class="content" id="card">
+
+        <!-- Avatar -->
+        <a href="https://vaultcord.com/tools/discord-id-lookup?prefill=578079000086446090" target="_blank" rel="noopener noreferrer" aria-label="Discord Profile">
+          <div class="avatar-wrapper">
+            <img
+              src="image/rurudo.png"
+              alt="csg's avatar"
+              class="avatar"
+              width="100"
+              height="100"
+            />
+          </div>
         </a>
-        <h1>Hi👋 I'm csg</h1>
-        <p style="font-size: 12px;">A passionate developer 💻 from Taiwan 🇹🇼</p>
-        <p>I have a deep love for Japanese anime 🎌, computer games 🎮, as well as watching movies 🍿 and series 📺.</p>
-        <p>I'm always up for new adventures and firmly believe there's a solution to every problem. If these interests resonate with you, feel free to chat with me!</p>
+
+        <!-- Dynamic Greeting -->
+        <h1 id="greeting">Hi👋 I'm csg</h1>
+
+        <!-- Typed Subtitle -->
+        <p class="subtitle" id="subtitle">A passionate developer 💻 from Taiwan 🇹🇼</p>
+
+        <!-- Bio -->
+        <p>
+          I have a deep love for Japanese anime 🎌, computer games 🎮,
+          movies 🍿, and TV series 📺.
+        </p>
+        <p>
+          I'm always up for new adventures and firmly believe there's a
+          solution to every problem. If these interests resonate with you,
+          feel free to chat with me!
+        </p>
+
+        <!-- Interest Tags -->
+        <div class="tags">
+          <span class="tag">🎌 Anime</span>
+          <span class="tag">🎮 Gaming</span>
+          <span class="tag">🍿 Movies</span>
+          <span class="tag">📺 Series</span>
+          <span class="tag">💻 Coding</span>
+        </div>
+
+        <!-- CTA -->
         <p>Don't forget to check out my GitHub 👇 if you're interested! 🚀</p>
-        <a href="https://github.com/chikenscrach" class="button" target="_blank">Github</a>
+
+        <div class="button-group">
+          <a href="https://github.com/chikenscrach" class="button" target="_blank" rel="noopener noreferrer">
+            <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .3a12 12 0 00-3.8 23.38c.6.12.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 00-1.33-1.76c-1.09-.74.08-.73.08-.73a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.5 1 2.56 2.56 0 01.76-1.61c-2.67-.3-5.47-1.33-5.47-5.93a4.64 4.64 0 011.24-3.22 4.3 4.3 0 01.12-3.18s1-.32 3.3 1.23a11.38 11.38 0 016 0c2.28-1.55 3.28-1.23 3.28-1.23a4.3 4.3 0 01.12 3.18 4.64 4.64 0 011.24 3.22c0 4.61-2.81 5.63-5.48 5.92a2.87 2.87 0 01.82 2.23v3.29c0 .32.21.7.82.58A12 12 0 0012 .3z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <!-- Easter‑egg hint -->
+        <p class="hint" id="hint">💡 psst… try the Konami Code</p>
       </div>
-    </div>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Person",
+	  "name": "csg",
+	  "url": "https://chikenscrach.github.io",
+	  "sameAs": [
+		"https://github.com/chikenscrach"
+	  ],
+	  "description": "A passionate developer from Taiwan",
+	  "knowsAbout": ["Web Development", "Anime", "Gaming"]
+	}
+	</script>
   </body>
 </html>

@@ -1,0 +1,8 @@
+/* TEAM */
+Developer: csg
+GitHub:    https://github.com/chikenscrach
+Location:  Taiwan
+
+/* SITE */
+Last update: 2026/03/25
+Language:    HTML, CSS, JavaScript
