@@ -12,10 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # ✅ 替換為現存且維護中的 HTML 驗證 action
       - name: Validate HTML
-        uses: nicolomaioli/validate-html-action@v1
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
-          files: '**/*.html'
+          root: .
+          css: true
 
       - name: Lint CSS (Stylelint)
         run: |
